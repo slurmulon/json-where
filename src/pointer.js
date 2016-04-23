@@ -42,3 +42,5 @@ export class PointerRelSpec extends AbstractRelSpec {
 }
 
 export const _ = () => new PointerRel(...arguments)
+
+export default {PointerRel, PointerRelSpec, _}

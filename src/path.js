@@ -47,3 +47,5 @@ export class PathRelSpec extends AbstractRelSpec {
 }
 
 export const $ = () => new PathRel(...arguments)
+
+export default {PathRel, PathRelSpec, $}
