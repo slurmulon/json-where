@@ -1,5 +1,3 @@
-'use strict'
-
 export const _specs = {}
 
 export class AbstractRel {

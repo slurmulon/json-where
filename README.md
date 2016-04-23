@@ -4,7 +4,7 @@
 
 ---
 
-`json-rel` converges the following standards and libraries in order to help normalize JSON reference/relationsip descriptors:
+`json-rel` converges the following standards and libraries in order to help normalize JSON reference/relationship descriptors:
 
  - JsonPath
    * Specification: http://goessner.net/articles/JsonPath/
