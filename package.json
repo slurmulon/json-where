@@ -1,6 +1,6 @@
 {
   "name": "json-rel",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Transparent references in JSON",
   "main": "src/index.js",
   "scripts": {
