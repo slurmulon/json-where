@@ -1,6 +1,6 @@
 import 'blanket'
 
-import {AbstractRel, AbstractRelSpec} from '../src/abstract'
+import {$, which, AbstractRel, AbstractRelSpec} from '../src/abstract'
 
 import chai from 'chai'
 import chaiThings from 'chai-things'
@@ -16,5 +16,10 @@ describe('AbstractRelSpec', () => {
     AbstractRelSpec.identify('$').should.equal('json-path')
   })
 
+  it('should be able to identify and follow arbitrary relations consistently', () => {
+    $('/foo',  {foo: true}).get().should.equal(true)
+    $('$.foo', {foo: true}).get().should.equal(true)
+    $('foo',   {foo: true}).get().should.equal(true)
+  })
 
 })

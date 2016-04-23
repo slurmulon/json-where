@@ -31,8 +31,10 @@ export class PointerRelSpec extends AbstractRelSpec {
 
   follow(rel, data) {
     if (this.matches(rel)) {
-      return jsonPointer.get(data, rel) || []
+      return jsonPointer.get(data, rel)
     }
+
+    return []
   }
 
   update(rel, obj, data) {

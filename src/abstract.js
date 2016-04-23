@@ -20,8 +20,22 @@ export class AbstractRel {
     return this
   }
 
-  get(obj = this.value) {
-    return this.spec.follow(this.path, obj)
+  get(obj = this.value, single = true) {
+    const value = this.spec.follow(this.path, obj)
+
+    if (value instanceof Array) {
+      return single && value.length ? value[0] : value
+    }
+
+    return single ? value : [value]
+  }
+
+  one(obj = this.value) {
+    return this.get(obj, true)
+  }
+
+  all(obj = this.value) {
+    return this.get(obj, false)
   }
 
   set(obj = this.value, data) {
@@ -61,4 +75,15 @@ export class AbstractRelSpec {
 
 }
 
-export default {AbstractRel, AbstractRelSpec}
+export const $ = (path, value) => {
+  const specKey = AbstractRelSpec.identify(path)
+  const spec = _specs[specKey]
+
+  if (spec instanceof AbstractRelSpec) {
+    return new AbstractRel({path, value, spec})
+  }
+}
+
+export const which = AbstractRelSpec.identify
+
+export default {AbstractRel, AbstractRelSpec, which, $}
