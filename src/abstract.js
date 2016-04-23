@@ -5,12 +5,16 @@ export const _specs = {}
 export class AbstractRel {
 
   constructor({path, spec, value}) {
+    if (new.target === AbstractRel && !spec) {
+      throw new TypeError('Cannot construct AbstractRel instances without a defined `spec`')
+    }
+
     this.path  = path
     this.spec  = spec
     this.value = value
   }
 
-  from(obj) {
+  use(obj) {
     this.value = obj
 
     return this
@@ -48,11 +52,13 @@ export class AbstractRelSpec {
   }
 
   static identify(data) {
-    return _specs.find((spec, label) => {
-      if (spec.matches(data)) {
+    return Object.keys(_specs).find((label) => {
+      if (_specs[label].matches(data)) {
         return label
       }
     })
   }
 
 }
+
+export default {AbstractRel, AbstractRelSpec}

@@ -31,7 +31,7 @@ export class PointerRelSpec extends AbstractRelSpec {
 
   follow(rel, data) {
     if (this.matches(rel)) {
-      return jsonPointer.get(data, rel) || [] // ? - settle on always collection or always entity
+      return jsonPointer.get(data, rel) || []
     }
   }
 
@@ -41,6 +41,8 @@ export class PointerRelSpec extends AbstractRelSpec {
 
 }
 
-export const _ = () => new PointerRel(...arguments)
+delete new PointerRelSpec() // ensure spec is registered with global pool by invoking it
 
-export default {PointerRel, PointerRelSpec, _}
+export const pointer = (path, value) => new PointerRel(path, value)
+
+export default {PointerRel, PointerRelSpec, pointer}

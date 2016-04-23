@@ -37,4 +37,8 @@ export class QueryRelSpec extends AbstractRelSpec {
 
 }
 
-export const ø = () => new QueryRel(...arguments)
+delete new QueryRelSpec() // ensure spec is registered with global pool by invoking it
+
+export const query = (path, value) => new QueryRel(path, value)
+
+export default {QueryRel, QueryRelSpec, query}

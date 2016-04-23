@@ -46,6 +46,8 @@ export class PathRelSpec extends AbstractRelSpec {
 
 }
 
-export const $ = () => new PathRel(...arguments)
+delete new PathRelSpec() // ensure spec is registered with global pool by invoking it
 
-export default {PathRel, PathRelSpec, $}
+export const path = (path, value) => new PathRel(path, value)
+
+export default {PathRel, PathRelSpec, path}
