@@ -57,13 +57,11 @@ let pointer = $('/foo/bar', data).get()  // true
 You may also, of course, access and use each specification individually:
 
 ```javascript
-import query from 'json-rel'
-import path from 'json-rel'
-import pointer from 'json-rel'
+import {query, path, pointer} from 'json-rel'
 
-let query1   = query('foo[bar]', data).get()   // true
-let path2    = path('$.foo.bar', data).get()   // true
-let pointer2 = pointer('/foo/bar', data).get() // true
+query('foo[bar]', data).get()   // true
+path('$.foo.bar', data).get()   // true
+pointer('/foo/bar', data).get() // true
 ```
 
 You can also infer the specification directly from the relation itself via `which`:
