@@ -36,6 +36,20 @@ export class AbstractRel {
     return this.get(obj, false)
   }
 
+  count(obj = this.value) {
+    const results = this.get(obj)
+
+    if (results instanceof Array) {
+      return results.length
+    }
+
+    return results ? 1 : 0
+  }
+
+  any(obj = this.value) {
+    return !!this.count(obj)
+  }
+
   set(obj = this.value, data) {
     return this.spec.update(this.path, obj, data)
   }
