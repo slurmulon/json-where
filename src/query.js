@@ -22,12 +22,12 @@ export class QueryRelSpec extends AbstractRelSpec {
       return false
     }
 
-    return jsonQuery(rel).key !== undefined
+    return jsonQuery(rel).key !== undefined // FIXME - use a RegEx instead, not sufficient
   }
 
-  follow(rel, data) {
+  follow(rel, data, locals) {
     if (this.matches(rel)) {
-      return jsonQuery(rel, {data}).value || []
+      return jsonQuery(rel, {data, locals}).value || []
     }
   }
 

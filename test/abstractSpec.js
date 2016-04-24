@@ -31,17 +31,36 @@ describe('AbstractRelSpec', () => {
       new AbstractRelSpec()
     }).should.throw(TypeError)
   })
-  
-  it('should be able to identify arbitrary relations', () => {
-    AbstractRelSpec.identify('/').should.equal('json-pointer')
-    AbstractRelSpec.identify('#').should.equal('json-query')
-    AbstractRelSpec.identify('$').should.equal('json-path')
+
+  describe('identify', () => {
+    it('should be able to identify arbitrary relations', () => {
+      AbstractRelSpec.identify('/').should.equal('json-pointer')
+      AbstractRelSpec.identify('#').should.equal('json-query')
+      AbstractRelSpec.identify('$').should.equal('json-path')
+    })
   })
 
-  it('should be able to identify and follow arbitrary relations consistently', () => {
-    $('/foo',  {foo: true}).get().should.equal(true)
-    $('$.foo', {foo: true}).get().should.equal(true)
-    $('foo',   {foo: true}).get().should.equal(true)
+})
+
+describe('$', () => {
+
+  it('should identify a relatoin\'s specification and create a reflected instance', () => {
+    const pointer = $('/foo',  {foo: true})
+    const path    = $('$.foo', {foo: true})
+    const query   = $('foo',   {foo: true})
+
+    pointer.should.be.an.instanceof(AbstractRel)
+    path.should.be.an.instanceof(AbstractRel)
+    query.should.be.an.instanceof(AbstractRel)
+
+    pointer.get().should.equal(true)
+    path.get().should.equal(true)
+    query.get().should.equal(true)
+  })
+
+  it('should prevent unrecognizable paths from being provided', () => {
+    const empty   = (() => $(null)).should.throw(TypeError)
+    // const corrupt = (() => $('~~')).should.throw(TypeError) // TODO
   })
 
 })

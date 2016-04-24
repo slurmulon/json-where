@@ -88,12 +88,14 @@ export class AbstractRelSpec {
 }
 
 export const $ = (path, value) => {
-  const specKey = AbstractRelSpec.identify(path)
-  const spec = _specs[specKey]
+  const key  = AbstractRelSpec.identify(path)
+  const spec = _specs[key]
 
   if (spec instanceof AbstractRelSpec) {
     return new AbstractRel({path, value, spec})
   }
+
+  throw new TypeError(`Failed to identify path specification for ${path}`)
 }
 
 export const which = AbstractRelSpec.identify
