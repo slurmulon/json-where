@@ -2,7 +2,7 @@
   "name": "json-rel",
   "version": "0.0.5",
   "description": "Transparent references in JSON",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "node ./node_modules/.bin/babel src --out-dir lib",
     "build-maps": "node ./node_modules/.bin/babel src --out-dir lib --source-maps",
@@ -11,7 +11,6 @@
     "pretest": "npm run build",
     "test": "node ./node_modules/.bin/mocha --reporter nyan --compilers js:babel-core/register test",
     "auto-start": "nodemon --exec \"npm run lint && npm start\" --ignore public/js",
-    "preinstall": "npm install --ignore-scripts && npm run build",
     "prepublish": "npm run build",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register"
   },
