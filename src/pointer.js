@@ -5,10 +5,8 @@ export class PointerRel extends AbstractRel {
 
   constructor(path, value) {
     super({ path, value, spec: new PointerRelSpec() })
-
-    this.path = path
-    this.value = value
   }
+
 }
 
 export class PointerRelSpec extends AbstractRelSpec {
@@ -18,7 +16,7 @@ export class PointerRelSpec extends AbstractRelSpec {
   }
 
   matches(rel) {
-    if (!rel.constructor === String) {
+    if (rel && !rel.constructor === String) {
       return false
     }
 
@@ -43,7 +41,7 @@ export class PointerRelSpec extends AbstractRelSpec {
 
 }
 
-delete new PointerRelSpec() // ensure spec is registered with global pool by invoking it
+delete new PointerRelSpec() // register spec with global pool by immediately invoking it
 
 export const pointer = (path, value) => new PointerRel(path, value)
 

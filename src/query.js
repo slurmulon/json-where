@@ -5,9 +5,6 @@ export class QueryRel extends AbstractRel {
 
   constructor(path, value) {
     super({ path, value, spec: new QueryRelSpec() })
-
-    this.path = path
-    this.value = value
   }
 }
 
@@ -18,7 +15,7 @@ export class QueryRelSpec extends AbstractRelSpec {
   }
 
   matches(rel) {
-    if (!rel.constructor === String && !rel instanceof Array) {
+    if (!rel || (!rel.constructor === String && !rel instanceof Array)) {
       return false
     }
 
@@ -37,7 +34,7 @@ export class QueryRelSpec extends AbstractRelSpec {
 
 }
 
-delete new QueryRelSpec() // ensure spec is registered with global pool by invoking it
+delete new QueryRelSpec() // register spec with global pool by immediately invoking it
 
 export const query = (path, value) => new QueryRel(path, value)
 
