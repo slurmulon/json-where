@@ -73,20 +73,16 @@ pointer('/foo/bar', data).get() // 'baz'
 You can easily specify whether or not you should expect a single object or a collection:
 
 ```javascript
-import $ from 'json-where'
-
-$('foo[bar]').one() // 'baz'
-$('foo[bar]').all() // ['baz']
+$('foo[bar]', data).one() // 'baz'
+$('foo[bar]', data).all() // ['baz']
 ```
 
 A couple of common utility methods are also defined for working with collections:
 
 ```javascript
-import $ from 'json-where'
-
-$('foo[bar]').count() // 1
-$('foo[bar]').any()   // true
-$('bar[baz]').any()   // false
+$('foo[bar]', data).count() // 1
+$('foo[bar]', data).any()   // true
+$('bar[baz]', data).any()   // false
 ```
 
 ### Identification
@@ -94,8 +90,6 @@ $('bar[baz]').any()   // false
 You can also infer the specification directly from the relation itself via `which`:
 
 ```javascript
-import which from 'json-where'
-
 which('foo[bar]')  // -> 'json-query'
 which('$.foo.bar') // -> 'json-path'
 which('/foo/bar')  // -> 'json-pointer'
