@@ -89,17 +89,6 @@ $('foo[bar]').any()   // true
 $('bar[baz]').any()   // false
 ```
 
-### Updating
-
-Mutating data can also be useful, and `json-where` provides a single method for performing this (`set`):
-
-```javascript
-import $ from 'json-where'
-
-$('foo[bar]').get()      // 'baz'
-$('foo[bar]').set('abc')
-$('foo[bar]').get()      // 'abc'
-```
 ### Identification
 
 You can also infer the specification directly from the relation itself via `which`:
