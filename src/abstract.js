@@ -1,10 +1,10 @@
 export const _specs = {}
 
-export class AbstractRel {
+export class AbstractRef {
 
   constructor({path, spec, value}) {
-    if (new.target === AbstractRel && !spec) {
-      throw new TypeError('Cannot construct AbstractRel instances without a defined `spec`')
+    if (new.target === AbstractRef && !spec) {
+      throw new TypeError('Cannot construct AbstractRef instances without a defined `spec`')
     }
 
     this.path  = path
@@ -56,13 +56,13 @@ export class AbstractRel {
 
 }
 
-export class AbstractRelSpec {
+export class AbstractRefSpec {
 
   constructor(label, draft) {
     const methods = ['matches', 'follow', 'update']
 
-    if (new.target === AbstractRelSpec) {
-      throw new TypeError('Cannot construct AbstractRelSpec instances directly')
+    if (new.target === AbstractRefSpec) {
+      throw new TypeError('Cannot construct AbstractRefSpec instances directly')
     }
 
     methods.forEach(method => {
@@ -88,16 +88,16 @@ export class AbstractRelSpec {
 }
 
 export const $ = (path, value) => {
-  const key  = AbstractRelSpec.identify(path)
+  const key  = AbstractRefSpec.identify(path)
   const spec = _specs[key]
 
-  if (spec instanceof AbstractRelSpec) {
-    return new AbstractRel({path, value, spec})
+  if (spec instanceof AbstractRefSpec) {
+    return new AbstractRef({path, value, spec})
   }
 
   throw new TypeError(`Failed to identify path specification for ${path}`)
 }
 
-export const which = AbstractRelSpec.identify
+export const which = AbstractRefSpec.identify
 
-export default {AbstractRel, AbstractRelSpec, which, $}
+export default {AbstractRef, AbstractRefSpec, which, $}

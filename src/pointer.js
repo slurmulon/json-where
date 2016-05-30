@@ -1,15 +1,15 @@
 import jsonPointer from 'jsonpointer'
-import {AbstractRel, AbstractRelSpec} from './abstract'
+import {AbstractRef, AbstractRefSpec} from './abstract'
 
-export class PointerRel extends AbstractRel {
+export class PointerRef extends AbstractRef {
 
   constructor(path, value) {
-    super({ path, value, spec: new PointerRelSpec() })
+    super({ path, value, spec: new PointerRefSpec() })
   }
 
 }
 
-export class PointerRelSpec extends AbstractRelSpec {
+export class PointerRefSpec extends AbstractRefSpec {
 
   constructor() {
     super('json-pointer', 'http://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-08')
@@ -41,8 +41,8 @@ export class PointerRelSpec extends AbstractRelSpec {
 
 }
 
-delete new PointerRelSpec() // register spec with global pool by immediately invoking it
+delete new PointerRefSpec() // register spec with global pool by immediately invoking it
 
-export const pointer = (path, value) => new PointerRel(path, value)
+export const pointer = (path, value) => new PointerRef(path, value)
 
-export default {PointerRel, PointerRelSpec, pointer}
+export default {PointerRef, PointerRefSpec, pointer}

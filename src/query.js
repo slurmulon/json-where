@@ -1,14 +1,14 @@
 import jsonQuery from 'json-query'
-import {AbstractRel, AbstractRelSpec} from './abstract'
+import {AbstractRef, AbstractRefSpec} from './abstract'
 
-export class QueryRel extends AbstractRel {
+export class QueryRef extends AbstractRef {
 
   constructor(path, value) {
-    super({ path, value, spec: new QueryRelSpec() })
+    super({ path, value, spec: new QueryRefSpec() })
   }
 }
 
-export class QueryRelSpec extends AbstractRelSpec {
+export class QueryRefSpec extends AbstractRefSpec {
 
   constructor() {
     super('json-query', 'https://www.npmjs.com/package/json-query')
@@ -34,8 +34,8 @@ export class QueryRelSpec extends AbstractRelSpec {
 
 }
 
-delete new QueryRelSpec() // register spec with global pool by immediately invoking it
+delete new QueryRefSpec() // register spec with global pool by immediately invoking it
 
-export const query = (path, value) => new QueryRel(path, value)
+export const query = (path, value) => new QueryRef(path, value)
 
-export default {QueryRel, QueryRelSpec, query}
+export default {QueryRef, QueryRefSpec, query}

@@ -1,7 +1,7 @@
 {
-  "name": "json-rel",
-  "version": "0.0.10",
-  "description": "Transparent references in JSON",
+  "name": "json-where",
+  "version": "1.0.0",
+  "description": "Transparent query, pointer and path descriptors for JSON",
   "main": "lib/index.js",
   "scripts": {
     "build": "node ./node_modules/.bin/babel src --out-dir lib",
@@ -17,12 +17,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/slurmulon/json-rel.git"
+    "url": "git+https://github.com/slurmulon/json-watch.git"
   },
   "keywords": [
     "json",
-    "rel",
-    "relation",
+    "match",
     "reference",
     "hyper",
     "hypermedia",
@@ -31,14 +30,15 @@
     "path",
     "pointer",
     "query",
+    "pattern",
     "find"
   ],
   "author": "slurmulon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/slurmulon/json-rel/issues"
+    "url": "https://github.com/slurmulon/json-walk/issues"
   },
-  "homepage": "https://github.com/slurmulon/json-rel#readme",
+  "homepage": "https://github.com/slurmulon/json-walk#readme",
   "devDependencies": {
     "babel-cli": "^6.7.5",
     "babel-preset-es2015": "^6.6.0",

@@ -1,15 +1,15 @@
 import jsonPath from 'jsonpath'
-import {AbstractRel, AbstractRelSpec} from './abstract'
+import {AbstractRef, AbstractRefSpec} from './abstract'
 
-export class PathRel extends AbstractRel {
+export class PathRef extends AbstractRef {
 
   constructor(path, value) {
-    super({ path, value, spec: new PathRelSpec() })
+    super({ path, value, spec: new PathRefSpec() })
   }
 
 }
 
-export class PathRelSpec extends AbstractRelSpec {
+export class PathRefSpec extends AbstractRefSpec {
 
   constructor() {
     super('json-path', 'http://goessner.net/articles/JsonPath/')
@@ -43,8 +43,8 @@ export class PathRelSpec extends AbstractRelSpec {
 
 }
 
-delete new PathRelSpec() // register spec with global pool by immediately invoking it
+delete new PathRefSpec() // register spec with global pool by immediately invoking it
 
-export const path = (path, value) => new PathRel(path, value)
+export const path = (path, value) => new PathRef(path, value)
 
-export default {PathRel, PathRelSpec, path}
+export default {PathRef, PathRefSpec, path}

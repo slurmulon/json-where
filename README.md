@@ -1,10 +1,10 @@
-# json-rel
+# json-where
 
-> :link: Transparent references in JSON
+> :link: Transparent query, pointer and path descriptors for JSON
 
 ---
 
-`json-rel` converges the following standards and libraries in order to help normalize JSON reference/relationship descriptors:
+`json-where` converges the following standards and libraries in order to help normalize JSON query/addressing descriptors:
 
  - JsonPath
    * Specification: http://goessner.net/articles/JsonPath/
@@ -15,61 +15,99 @@
  - JsonQuery
    * Library: https://www.npmjs.com/package/json-query
 
-The goal is to increase developer transparency and to provide a unified, semantic interface for working with related JSON data.
+The goal is to increase developer transparency and to provide a unified interface for matching related JSON data.
 
-Aside from being all around simple, `json-rel` spares library developers from having to:
+`json-where`'s simple interface spares developers from having to:
 
-  1. decide between which reference specifications(s) to support in your projects
+  1. decide between which query/addressing specifications(s) to support in their projects
   2. write an interface for when more than one standard needs support
-  3. bottleneck integrators of your library into a certain specificaton
+  3. bottleneck integrators of their library into a certain specificaton
   4. write a mechanism that provides a consistent return format (e.g. array vs. element)
 
 ## Installation
 
-`npm install json-rel`
+`npm install json-where`
 
 ## Usage
 
-This example shows how to use the main feature of `json-rel`, which is being able to provide any relationship or reference string to `$`, an "operator" which will automatically identify the correct specification to use based on the relation itself:
+### Implicit
+
+This example shows how to use the main feature of `json-where`, which is being able to provide any query or reference string to `$`, an "operator" which will automatically imply the correct specification to use based on the relation itself:
 
 ```javascript
-import $ from 'json-rel'
+import $ from 'json-where'
 
 const data = {
   foo: {
-    bar: true
+    bar: 'baz'
   }
 }
 
-let query   = $('foo.bar').use(data).get()   // true
-let path    = $('$.foo.bar').use(data).get() // true
-let pointer = $('/foo/bar').use(data).get()  // true
+let query   = $('foo.bar').use(data).get()   // 'baz'
+let path    = $('$.foo.bar').use(data).get() // 'baz'
+let pointer = $('/foo/bar').use(data).get()  // 'baz'
 ```
 
 If you want to be slightly more concise:
 
 ```javascript
-let query   = $('foo[bar]', data).get()  // true
-let path    = $('$.foo.bar', data).get() // true
-let pointer = $('/foo/bar', data).get()  // true
+let query   = $('foo[bar]', data).get()  // 'baz'
+let path    = $('$.foo.bar', data).get() // 'baz'
+let pointer = $('/foo/bar', data).get()  // 'baz'
 ```
+
+### Explicit
 
 You may also, of course, access and use each specification individually:
 
 ```javascript
-import {query, path, pointer} from 'json-rel'
+import {query, path, pointer} from 'json-where'
 
-query('foo[bar]', data).get()   // true
-path('$.foo.bar', data).get()   // true
-pointer('/foo/bar', data).get() // true
+query('foo[bar]', data).get()   // 'baz'
+path('$.foo.bar', data).get()   // 'baz'
+pointer('/foo/bar', data).get() // 'baz'
 ```
+
+### Collections
+
+You can easily specify whether or not you should expect a single object or a collection:
+
+```javascript
+import $ from 'json-where'
+
+$('foo[bar]').one() // 'baz'
+$('foo[bar]').all() // ['baz']
+```
+
+A couple of common utility methods are also defined for working with collections:
+
+```javascript
+import $ from 'json-where'
+
+$('foo[bar]').count() // 1
+$('foo[bar]').any()   // true
+$('bar[baz]').any()   // false
+```
+
+### Updating
+
+Mutating data can also be useful, and `json-where` provides a single method for performing this (`set`):
+
+```javascript
+import $ from 'json-where'
+
+$('foo[bar]').get()      // 'baz'
+$('foo[bar]').set('abc')
+$('foo[bar]').get()      // 'abc'
+```
+### Identification
 
 You can also infer the specification directly from the relation itself via `which`:
 
 ```javascript
-import which from 'json-rel'
+import which from 'json-where'
 
-which('foo[bar]')  // -> json-query
-which('$.foo.bar') // -> json-path
-which('/foo/bar')  // -> json-pointer
+which('foo[bar]')  // -> 'json-query'
+which('$.foo.bar') // -> 'json-path'
+which('/foo/bar')  // -> 'json-pointer'
 ```
