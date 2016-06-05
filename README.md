@@ -102,9 +102,7 @@ Currently only `json-pointer` supports updating values in a query-like fasion:
 ```javascript
 const path = pointer('/foo/bar', data)
 
-path.get() // 'bar'
-
-path.set('zab')
-
-path.get() // 'zab'
+path.get()      // 'bar'
+path.set('zab') // ...
+path.get()      // 'zab'
 ```
