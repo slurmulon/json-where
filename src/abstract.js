@@ -18,7 +18,7 @@ export class AbstractRef {
     return this
   }
 
-  get(obj = this.value, single = true) {
+  get(single = true, obj = this.value) {
     const value = this.spec.follow(this.path, obj)
 
     if (value instanceof Array) {
@@ -50,7 +50,7 @@ export class AbstractRef {
     return !!this.count(obj)
   }
 
-  set(obj = this.value, data) {
+  set(data, obj = this.value) {
     return this.spec.update(this.path, obj, data)
   }
 

@@ -36,7 +36,7 @@ export class PointerRefSpec extends AbstractRefSpec {
   }
 
   update(rel, obj, data) {
-    return jsonPointer.set(obj, data)
+    return jsonPointer.set(obj, rel, data)
   }
 
 }

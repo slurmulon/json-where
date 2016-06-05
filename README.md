@@ -1,6 +1,6 @@
 # json-where
 
-> :link: Transparent query, pointer and path descriptors for JSON
+> :mag: Transparent query, pointer and path descriptors for JSON
 
 ---
 
@@ -32,7 +32,7 @@ The goal is to increase developer transparency and to provide a unified interfac
 
 ### Implicit
 
-This example shows how to use the main feature of `json-where`, which is being able to provide any query or reference string to `$`, an "operator" which will automatically imply the correct specification to use based on the relation itself:
+This example shows how to use the main feature of `json-where`, which is being able to provide any query or reference string to `$`, an "operator" which will automatically imply the correct specification to use based on the reference itself:
 
 ```javascript
 import $ from 'json-where'
@@ -90,7 +90,21 @@ $('bar[baz]', data).any()   // false
 You can also infer the specification directly from the relation itself via `which`:
 
 ```javascript
-which('foo[bar]')  // -> 'json-query'
-which('$.foo.bar') // -> 'json-path'
-which('/foo/bar')  // -> 'json-pointer'
+which('foo[bar]')  // 'json-query'
+which('$.foo.bar') // 'json-path'
+which('/foo/bar')  // 'json-pointer'
+```
+
+### Update
+
+Currently only `json-pointer` supports updating values in a query-like fasion:
+
+```javascript
+const path = pointer('/foo/bar', data)
+
+path.get() // 'bar'
+
+path.set('zab')
+
+path.get() // 'zab'
 ```

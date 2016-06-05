@@ -39,6 +39,7 @@ export class PathRefSpec extends AbstractRefSpec {
 
   update(rel, obj, data) {
     // TODO! - no core support
+    console.warn('json-path does not support updating values!')
   }
 
 }

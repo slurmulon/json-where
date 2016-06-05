@@ -30,6 +30,7 @@ export class QueryRefSpec extends AbstractRefSpec {
 
   update(rel, obj, data) {
     // TODO - no core support
+    console.warn('json-query does not support updating values!')
   }
 
 }

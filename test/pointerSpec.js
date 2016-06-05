@@ -19,4 +19,12 @@ describe('PointerRefSpec', () => {
     chai.should(new PointerRef('!').use({bar: 'fail'}).get()).not.throw
   })
 
+  it('should allow updating objects that match against query paths', () => {
+    const ref    = new PointerRef('/foo')
+    const test   = ref.use({foo: 'win'}).set('woo')
+    const result = ref.get()
+
+    should.equal(result, 'woo')
+  })
+
 })
