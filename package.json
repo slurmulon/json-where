@@ -4,16 +4,15 @@
   "description": "Transparent query, pointer and path descriptors for JSON",
   "main": "lib/index.js",
   "scripts": {
-    "build": "node ./node_modules/.bin/babel src --out-dir lib",
-    "build-maps": "node ./node_modules/.bin/babel src --out-dir lib --source-maps",
+    "build": "babel src --out-dir lib",
+    "build-maps": "babel src --out-dir lib --source-maps",
     "lint": "eslint src/index.js",
-    "start": "./node_modules/.bin/babel-node src/index.js",
+    "start": "babe-node src/index.js",
     "pretest": "npm run build",
-    "test": "node ./node_modules/.bin/mocha --reporter nyan --compilers js:babel-core/register test",
+    "test": "mocha --reporter nyan --compilers js:babel-core/register test",
     "auto-start": "nodemon --exec \"npm run lint && npm start\" --ignore public/js",
-    "preinstall": "npm install --ignore-scripts && npm run build",
     "prepublish": "npm run build",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register"
+    "coverage": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -49,8 +48,8 @@
     "mocha": "^2.4.5"
   },
   "dependencies": {
-    "json-query": "^1.8.0",
+    "json-query": "^2.1.0",
     "jsonpath": "^0.2.2",
-    "jsonpointer": "^3.0.0"
+    "jsonpointer": "^4.0.0"
   }
 }

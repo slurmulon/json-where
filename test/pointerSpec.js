@@ -12,7 +12,7 @@ describe('PointerRefSpec', () => {
   
   it('should properly query paths against objects', () => {
     should.equal(new PointerRef('/foo').use({foo: 'win'}).get(), 'win')
-    should.equal(new PointerRef('/foo').use({bar: 'fail'}).get(), null)
+    should.equal(new PointerRef('/foo').use({bar: 'fail'}).get(), undefined)
   })
 
   it('should ignore invalid query paths against objects', () => {

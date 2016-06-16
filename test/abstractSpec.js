@@ -14,7 +14,7 @@ describe('AbstractRef', () => {
   it('should prevent initialization of abstract members if a spec is not provided', () => {
     // FIXME
     // (() => {
-    //   new AbstractRef
+    //   new AbstractRef()
     // }).should.throw(TypeError)
 
     (() => {
