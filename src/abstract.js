@@ -18,7 +18,7 @@ export class AbstractRef {
     return this
   }
 
-  get(single = true, obj = this.value) {
+  get(obj = this.value, single = true) {
     const value = this.spec.follow(this.path, obj)
 
     if (value instanceof Array) {

@@ -21,7 +21,7 @@ export class PointerRefSpec extends AbstractRefSpec {
     }
 
     try {
-      return jsonPointer.compile(rel) instanceof Object
+      return jsonPointer.compile([rel]) instanceof Object
     } catch (e) {
       return false
     }
