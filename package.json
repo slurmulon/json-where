@@ -48,8 +48,8 @@
     "mocha": "^2.4.5"
   },
   "dependencies": {
-    "json-query": "^2.1.0",
-    "jsonpath": "^0.2.2",
-    "jsonpointer": "^4.0.0"
+    "json-query": "^2.2.2",
+    "jsonpath": "^1.0.2",
+    "jsonpointer": "^4.0.1"
   }
 }
