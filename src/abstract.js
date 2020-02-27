@@ -2,7 +2,7 @@ export const _specs = {}
 
 export class AbstractRef {
 
-  constructor({path, spec, value}) {
+  constructor ({ path, spec, value }) {
     if (new.target === AbstractRef && !spec) {
       throw new TypeError('Cannot construct AbstractRef instances without a defined `spec`')
     }
@@ -12,45 +12,45 @@ export class AbstractRef {
     this.value = value
   }
 
-  use(obj) {
+  use (obj) {
     this.value = obj
 
     return this
   }
 
-  get(obj = this.value, single = true) {
+  get (obj = this.value, single = true) {
     const value = this.spec.follow(this.path, obj)
 
-    if (value instanceof Array) {
+    if (Array.isArray(value)) {
       return single && value.length ? value[0] : value
     }
 
     return single ? value : [value]
   }
 
-  one(obj = this.value) {
+  one (obj = this.value) {
     return this.get(obj, true)
   }
 
-  all(obj = this.value) {
+  all (obj = this.value) {
     return this.get(obj, false)
   }
 
-  count(obj = this.value) {
+  count (obj = this.value) {
     const results = this.get(obj)
 
-    if (results instanceof Array) {
+    if (Array.isArray(value)) {
       return results.length
     }
 
     return results ? 1 : 0
   }
 
-  any(obj = this.value) {
+  any (obj = this.value) {
     return !!this.count(obj)
   }
 
-  set(data, obj = this.value) {
+  set (data, obj = this.value) {
     return this.spec.update(this.path, obj, data)
   }
 
@@ -58,7 +58,7 @@ export class AbstractRef {
 
 export class AbstractRefSpec {
 
-  constructor(label, draft) {
+  constructor (label, draft) {
     const methods = ['matches', 'follow', 'update']
 
     if (new.target === AbstractRefSpec) {
@@ -100,4 +100,4 @@ export const $ = (path, value) => {
 
 export const which = AbstractRefSpec.identify
 
-export default {AbstractRef, AbstractRefSpec, which, $}
+export default { AbstractRef, AbstractRefSpec, which, $ }

@@ -32,7 +32,9 @@ The goal is to increase developer transparency and to provide a unified interfac
 
 ### Implicit
 
-This example shows how to use the main feature of `json-where`, which is being able to provide any query or reference string to `$`, an "operator" which will automatically imply the correct specification to use based on the reference itself:
+This example shows how to use the main feature of `json-where`, which is being able to provide any descriptor string to `$`.
+
+The `$` "operator" will automatically imply the correct specification to use based on the descriptor itself:
 
 ```javascript
 import $ from 'json-where'
@@ -48,7 +50,7 @@ let path    = $('$.foo.bar').use(data).get() // 'baz'
 let pointer = $('/foo/bar').use(data).get()  // 'baz'
 ```
 
-If you want to be slightly more concise:
+If you want to be slightly more concise you can avoid calling `use`:
 
 ```javascript
 let query   = $('foo[bar]', data).get()  // 'baz'
@@ -61,7 +63,7 @@ let pointer = $('/foo/bar', data).get()  // 'baz'
 You may also, of course, access and use each specification individually:
 
 ```javascript
-import {query, path, pointer} from 'json-where'
+import { query, path, pointer } from 'json-where'
 
 query('foo[bar]', data).get()   // 'baz'
 path('$.foo.bar', data).get()   // 'baz'
@@ -87,7 +89,7 @@ $('bar[baz]', data).any()   // false
 
 ### Identification
 
-You can also infer the specification directly from the relation itself via `which`:
+You can infer the specification directly from the descriptor itself via `which`:
 
 ```javascript
 which('foo[bar]')  // 'json-query'
@@ -97,7 +99,7 @@ which('/foo/bar')  // 'json-pointer'
 
 ### Update
 
-Currently only `json-pointer` supports updating values in a query-like fasion:
+Currently only `json-pointer` supports updating values via descriptors:
 
 ```javascript
 const path = pointer('/foo/bar', data)

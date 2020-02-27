@@ -3,3 +3,4 @@ node_modules
 coverage
 *.tmp
 *.tmp.*
+.nyc_output/
