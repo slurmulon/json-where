@@ -1,6 +1,6 @@
 import 'blanket'
 
-import {$, which, AbstractRef, AbstractRefSpec} from '../src/abstract'
+import { $, which, AbstractRef, AbstractRefSpec } from '../src/abstract'
 import PathRefSpec from '../src/path'
 
 import chai from 'chai'
@@ -18,7 +18,7 @@ describe('AbstractRef', () => {
     // }).should.throw(TypeError)
 
     (() => {
-      new AbstractRef({spec: PathRefSpec})
+      new AbstractRef({ spec: PathRefSpec })
     }).should.not.throw(TypeError)
   })
 
@@ -45,9 +45,9 @@ describe('AbstractRefSpec', () => {
 describe('$', () => {
 
   it('should identify a relatoin\'s specification and create a reflected instance', () => {
-    const pointer = $('/foo',  {foo: true})
-    const path    = $('$.foo', {foo: true})
-    const query   = $('foo',   {foo: true})
+    const pointer = $('/foo',  { foo: true })
+    const path    = $('$.foo', { foo: true })
+    const query   = $('foo',   { foo: true })
 
     pointer.should.be.an.instanceof(AbstractRef)
     path.should.be.an.instanceof(AbstractRef)
