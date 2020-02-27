@@ -16,7 +16,7 @@ export class PointerRefSpec extends AbstractRefSpec {
   }
 
   matches (rel) {
-    if (rel && typeof rel !== 'string') {
+    if (!rel || typeof rel !== 'string') {
       return false
     }
 
