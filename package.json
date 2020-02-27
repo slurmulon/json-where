@@ -12,8 +12,7 @@
     "test": "mocha --reporter nyan --compilers js:babel-core/register test",
     "auto-start": "nodemon --exec \"npm run lint && npm start\" --ignore public/js",
     "prepublish": "npm run build",
-    "coverage": "nyc npm run test",
-    "coverage2": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register"
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
