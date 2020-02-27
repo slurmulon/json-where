@@ -12,7 +12,8 @@
     "test": "mocha --reporter nyan --compilers js:babel-core/register test",
     "auto-start": "nodemon --exec \"npm run lint && npm start\" --ignore public/js",
     "prepublish": "npm run build",
-    "coverage": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register"
+    "coverage": "nyc npm run test",
+    "coverage2": "istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register"
   },
   "repository": {
     "type": "git",
@@ -45,11 +46,12 @@
     "chai": "^3.5.0",
     "chai-things": "^0.2.0",
     "istanbul": "^0.4.3",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "nyc": "^15.0.0"
   },
   "dependencies": {
-    "json-query": "^2.1.0",
-    "jsonpath": "^0.2.2",
-    "jsonpointer": "^4.0.0"
+    "json-query": "^2.2.2",
+    "jsonpath": "^1.0.2",
+    "jsonpointer": "^4.0.1"
   }
 }

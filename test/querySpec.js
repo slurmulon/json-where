@@ -1,5 +1,3 @@
-import 'blanket'
-
 import { query, QueryRef, QueryRefSpec } from '../src/query'
 
 import chai from 'chai'

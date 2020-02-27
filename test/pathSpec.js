@@ -1,5 +1,3 @@
-import 'blanket'
-
 import {path, PathRef, PathRefSpec} from '../src/path'
 
 import chai from 'chai'

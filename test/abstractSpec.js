@@ -1,5 +1,3 @@
-import 'blanket'
-
 import { $, which, AbstractRef, AbstractRefSpec } from '../src/abstract'
 import PathRefSpec from '../src/path'
 

@@ -1,5 +1,3 @@
-import 'blanket'
-
 import { pointer, PointerRef, PointerRefSpec } from '../src/pointer'
 
 import chai from 'chai'
