@@ -1,9 +1,9 @@
 import jsonPath from 'jsonpath'
-import {AbstractRef, AbstractRefSpec} from './abstract'
+import { AbstractRef, AbstractRefSpec } from './abstract'
 
 export class PathRef extends AbstractRef {
 
-  constructor(path, value) {
+  constructor (path, value) {
     super({ path, value, spec: new PathRefSpec() })
   }
 
@@ -11,12 +11,12 @@ export class PathRef extends AbstractRef {
 
 export class PathRefSpec extends AbstractRefSpec {
 
-  constructor() {
+  constructor () {
     super('json-path', 'http://goessner.net/articles/JsonPath/')
   }
 
-  matches(rel) {
-    if (rel && !rel.constructor === String) {
+  matches (rel) {
+    if (rel && typeof rel !== 'string') {
       return false
     }
 
@@ -29,7 +29,7 @@ export class PathRefSpec extends AbstractRefSpec {
     }
   }
 
-  follow(rel, data) {
+  follow (rel, data) {
     if (this.matches(rel)) {
       return jsonPath.query(data, rel)
     }
@@ -37,8 +37,8 @@ export class PathRefSpec extends AbstractRefSpec {
     return []
   }
 
-  update(rel, obj, data) {
-    // TODO! - no core support
+  update (rel, obj, data) {
+    // TODO: No core support, so add it here
     console.warn('json-path does not support updating values!')
   }
 
@@ -48,4 +48,4 @@ delete new PathRefSpec() // register spec with global pool by immediately invoki
 
 export const path = (path, value) => new PathRef(path, value)
 
-export default {PathRef, PathRefSpec, path}
+export default { PathRef, PathRefSpec, path }
