@@ -1,6 +1,6 @@
 {
   "name": "json-where",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Transparent query, pointer and path descriptors for JSON",
   "main": "lib/index.js",
   "scripts": {
