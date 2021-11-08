@@ -49,6 +49,6 @@
   "dependencies": {
     "json-query": "^2.2.2",
     "jsonpath": "^1.0.2",
-    "jsonpointer": "^4.0.1"
+    "jsonpointer": "^5.0.0"
   }
 }
